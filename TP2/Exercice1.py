@@ -7,6 +7,12 @@ def lirejson(fichierjson):
         return contenu
 
 def ecrirecsv(contenujson, fichiercsv):
-    with open(fichiercsv, 'w') as csv:
-        csvwriter = csv.writer(csv, delimiter="\n")
-        csvwriter.writerow(["reel,imaginaire"])
+    with open(fichiercsv, 'w', newline="") as f:
+        csvwriter = csv.writer(f)
+        csvwriter.writerow(["reel","imaginaire"])
+        for tuple in contenujson:
+            csvwriter.writerow(tuple)
+
+contenujson = lirejson("data.json")
+print(contenujson)
+ecrirecsv(contenujson, "data.csv")
